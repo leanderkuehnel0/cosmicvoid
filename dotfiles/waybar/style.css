@@ -1,0 +1,96 @@
+* {
+    border: none;
+    border-radius: 12px;
+    font-family: "0xProto Nerd Font", monospace;
+    font-size: 11px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(40, 42, 54, 0.9); /* Dracula dark base */
+    color: #f8f8f2;
+    border: none;
+}
+
+/* Module containers - using #6272a4 (selection blue) */
+#window,
+#clock,
+#pulseaudio,
+#bluetooth,
+#network,
+#cpu,
+#battery {
+    background-color: #6272a4; /* Dracula selection blue */
+    color: #f8f8f2;
+    padding: 0 8px;
+    margin: 0 2px;
+    border-radius: 12px;
+}
+
+/* Workspaces */
+#workspaces {
+    padding: 0 4px;
+    background-color: transparent;
+}
+
+#workspaces button {
+    padding: 0 6px;
+    background: transparent;
+    color: #6272a4;
+    border-radius: 12px;
+    min-width: 20px;
+    margin: 0 1px;
+}
+
+#workspaces button.focused {
+    background-color: #6272a4; /* Same blue */
+    color: #f8f8f2;
+}
+
+#workspaces button.urgent {
+    background-color: #ff5555; /* Red remains for urgency */
+    color: #f8f8f2;
+}
+
+/* Hover effects - slightly lighter blue */
+#clock:hover,
+#pulseaudio:hover,
+#bluetooth:hover,
+#network:hover,
+#cpu:hover,
+#battery:hover {
+    background-color: #7186b0;
+}
+
+/* Critical states */
+#battery.critical:not(.charging) {
+    background-color: #ff5555;
+    animation: blink 1s ease-in-out infinite alternate;
+}
+
+@keyframes blink {
+    to {
+        opacity: 0.6;
+    }
+}
+
+/* Status indicators */
+#pulseaudio.muted {
+    background-color: #44475a;
+    color: #ff5555;
+}
+
+#network.disconnected {
+    background-color: #44475a;
+    color: #ff5555;
+}
+
+/* Compact layout */
+#clock {
+    padding: 0 10px;
+}
+
+#network, #bluetooth {
+    padding: 0 8px;
+    min-width: 20px;
+}

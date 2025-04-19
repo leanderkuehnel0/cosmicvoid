@@ -1,0 +1,8 @@
+shadows enable
+corner_radius 10
+gaps inner 8
+blur enable
+for_window [all] opacity 0.5
+
+client.focused #6272A4 #6272A4 #F8F8F2
+client.unfocused #282A36 #282A36 #F8F8F2

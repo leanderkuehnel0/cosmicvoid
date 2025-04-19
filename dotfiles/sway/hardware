@@ -1,0 +1,2 @@
+set $touchpad "6127:24774:HAILUCK_CO.,LTD_Lenovo_HID_Device_Touchpad"
+set $kb_layout de

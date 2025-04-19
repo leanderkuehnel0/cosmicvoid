@@ -1,0 +1,13 @@
+1. install void linux
+
+2. install swayfx with package manager:	sudo xbps-install swayfx
+3. setup xdg:				sudo xbps-install xdg-utils 
+					sudo xbps-install xdg-user-dirs
+					sudo xbps-install elogind
+					sudo xbpd-install wlroots
+4. setup dbus:				sudo ln -s /etc/sv/dbus /var/service/
+5. setup graphics drivers:		sudo xbps-install mesa-dri
+6. install a font			(download a font zip)
+					(extract to new folder in /usr/share/fonts)
+					sudo fc-cache -fv
+
