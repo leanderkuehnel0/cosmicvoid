@@ -15,6 +15,7 @@ window#waybar {
 /* Module containers - using #6272a4 (selection blue) */
 #window,
 #clock,
+#backlight,
 #pulseaudio,
 #bluetooth,
 #network,

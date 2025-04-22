@@ -9,7 +9,7 @@
 # Logo key. Use Mod1 for Alt.
 
 exec pipewire
-exec $HOME/.config/waybar/launch.sh
+exec_always dbus-launch $HOME/.config/waybar/launch.sh
 
 set $mod Mod4
 # Home row direction keys, like vim
@@ -41,6 +41,7 @@ input $touchpad {
 
 bindgesture swipe:right workspace prev
 bindgesture swipe:left workspace next
+bindgesture swipe:up exec $menu
 
 # KEYBINDS
 # KEYBINDS
@@ -51,6 +52,7 @@ input * xkb_layout $kb_layout
 
 bindsym $mod+Return exec $term
 bindsym $mod+b exec $browser
+bindsym $mod+o exec obsidian
 
 # Kill focused window
 bindsym $mod+q kill

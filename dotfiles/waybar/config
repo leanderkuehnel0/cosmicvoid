@@ -9,7 +9,7 @@
     "margin-right": 4,
     "modules-left": ["sway/workspaces", "sway/window"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "bluetooth", "network", "cpu", "battery"],
+    "modules-right": ["network", "bluetooth", "cpu", "backlight", "pulseaudio", "battery"],
     
     "sway/workspaces": {
         "disable-scroll": true,
@@ -44,30 +44,36 @@
         "interval": 5
     },
     
+    "backlight": {
+        "format": "󰃠 {percent}"
+    },
+
     "battery": {
         "states": {
             "warning": 30,
             "critical": 15
         },
         "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
+        "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
         "format-icons": ["", "", "", "", ""]
     },
     
     "network": {
-        "format-wifi": "",
-        "format-ethernet": "",
-        "format-disconnected": "",
+        "format-wifi": "󰖩",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰖪",
         "tooltip-format": "{essid} {ipaddr}",
-        "interval": 5
+        "interval": 5,
+	"on-click": "foot -e sudo nmtui"
     },
     
     "bluetooth": {
-        "format": " {status}",
+        "format": "",
         "format-disabled": "",
         "format-connected": "",
-        "tooltip-format": "{device_alias} ({device_address})"
+        "tooltip-format": "{device_alias} ({device_address})",
+	"on-click": "foot -e bluetuith"
     },
     
     "pulseaudio": {
