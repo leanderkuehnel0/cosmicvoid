@@ -11,3 +11,4 @@
 					(extract to new folder in /usr/share/fonts)
 					sudo fc-cache -fv
 
+
