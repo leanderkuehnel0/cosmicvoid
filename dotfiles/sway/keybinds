@@ -1,3 +1,5 @@
+set $mod Mod4
+
 # Programs
 bindsym $mod+Return exec $term
 bindsym $mod+b exec $browser
@@ -13,7 +15,7 @@ floating_modifier $mod normal
 # Reload the configuration file
 bindsym $mod+Shift+c exec $HOME/cosmic/update.sh
 
-bindsym $mod+Shift+p exec "grim -g "$(slurp)" - > $HOME/Pictures/screenshot.jpg
+bindsym $mod+Shift+p exec grim -g "$(slurp)" $HOME/Pictures/screenshot.png
 bindsym $mod+v exec cliphist list | wofi -S dmenu --pre-display-cmd "echo '%s' | cut -f 2" | cliphist decode | wl-copy
 
 # Exit sway (logs you out of your Wayland session)

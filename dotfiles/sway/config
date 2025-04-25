@@ -1,3 +1,4 @@
+include hardware
 ### Variables
 
 # Logo key. Use Mod1 for Alt.
@@ -23,7 +24,6 @@ exec_always dbus-launch $HOME/.config/waybar/launch.sh
 exec wl-paste --watch cliphist store
 
 include theme
-include hardware
 include keybinds
 
 # Default wallpaper
