@@ -1,26 +1,28 @@
+@import url(".cache/wal/colors-waybar.css");
+
 window {
 margin: 0px;
-border: 1px solid #bd93f9;
-background-color: #282a36;
+border: 1px solid @color2;
+background-color: @background;
 }
 
 #input {
 margin: 5px;
 border: none;
-color: #f8f8f2;
-background-color: #44475a;
+color: @foreground;
+background-color: @background;
 }
 
 #inner-box {
 margin: 5px;
 border: none;
-background-color: #282a36;
+background-color: @background;
 }
 
 #outer-box {
 margin: 5px;
 border: none;
-background-color: #282a36;
+background-color: @background;
 }
 
 #scroll {
@@ -31,11 +33,11 @@ border: none;
 #text {
 margin: 5px;
 border: none;
-color: #f8f8f2;
+color: @foreground;
 } 
 
 #entry.activatable #text {
-color: #282a36;
+color: @color1;
 }
 
 #entry > * {
@@ -43,9 +45,17 @@ color: #f8f8f2;
 }
 
 #entry:selected {
-background-color: #44475a;
+background-color: @color1;
 }
 
 #entry:selected #text {
 font-weight: bold;
+}
+
+#img:selected {
+    background: none;
+}
+#text:selected {
+color: @background;
+background: none;
 }

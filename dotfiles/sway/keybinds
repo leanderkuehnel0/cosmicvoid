@@ -4,7 +4,7 @@ set $mod Mod4
 bindsym $mod+Return exec $term
 bindsym $mod+b exec $browser
 bindsym $mod+o exec obsidian
-bindsym $mod+t exec $filemanager
+bindsym $mod+e exec $filemanager
 bindsym $mod+Shift+Return exec $menu
 
 # Kill focused window
@@ -13,10 +13,14 @@ bindsym $mod+q kill
 floating_modifier $mod normal
 
 # Reload the configuration file
-bindsym $mod+Shift+c exec $HOME/cosmic/update.sh
+bindsym $mod+Shift+c exec $HOME/cosmic/scripts/update.sh
 
+# Take a Screenshot
 bindsym $mod+Shift+p exec grim -g "$(slurp)" $HOME/Pictures/screenshot.png
 bindsym $mod+v exec cliphist list | wofi -S dmenu --pre-display-cmd "echo '%s' | cut -f 2" | cliphist decode | wl-copy
+
+# Change the wallpaper
+bindsym $mod+Shift+w exec $HOME/cosmic/scripts/pywal/change-theme.sh
 
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -74,7 +78,7 @@ bindsym $mod+Shift+0 move container to workspace number 10
 # Switch the current container between different layout styles
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+j layout toggle split
 # Make the current focus fullscreen
 bindsym $mod+f fullscreen
 

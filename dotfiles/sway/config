@@ -19,15 +19,18 @@ set $filemanager thunar
 # keyboard layout
 input * xkb_layout $kb_layout
 
+# Default wallpaper
+exec wal -R && sleep 2 && wal -R -e
+exec_always wal -R -e
+
 exec pipewire
-exec_always dbus-launch $HOME/.config/waybar/launch.sh
+exec_always sleep 1 && dbus-launch $HOME/.config/waybar/launch.sh sway
+exec_always pywalfox update
 exec wl-paste --watch cliphist store
 
+include "$HOME/.cache/wal/colors-sway"
 include theme
 include keybinds
-
-# Default wallpaper
-output * bg /home/andi/Pictures/wallpapers/void.png fill
 
 # touchpad configuration
 
@@ -42,5 +45,7 @@ bindgesture swipe:right workspace prev
 bindgesture swipe:left workspace next
 bindgesture swipe:up exec $menu
 
+
+mouse_warping container
 
 include /etc/sway/config.d/*

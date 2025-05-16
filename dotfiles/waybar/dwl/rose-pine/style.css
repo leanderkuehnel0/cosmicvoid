@@ -1,0 +1,106 @@
+/* ~/.config/waybar/style.css */
+
+/* Rosé Pine color palette */
+@define-color base #191724;      /* Background base */
+@define-color surface #1f1d2e;   /* Slightly lighter background */
+@define-color overlay #26233a;   /* Overlay for subtle contrast */
+@define-color text #e0def4;      /* Primary text color */
+@define-color love #eb6f92;      /* Accent for critical/highlight */
+@define-color gold #f6c177;      /* Warning or secondary accent */
+@define-color pine #31748f;      /* Active or focused elements */
+@define-color foam #9ccfd8;      /* Subtle highlights */
+@define-color iris #c4a7e7;     /* Secondary text or hover */
+
+/* Global styles */
+* {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: @text;
+}
+
+/* Bar styling */
+#waybar {
+    background: rgba(31, 29, 46, 0.7); /* Semi-transparent surface */
+/*    backdrop-filter: blur(12px);       Glassmorphism blur */
+    border-radius: 12px;
+    margin: 6px;
+    padding: 0 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Module styling */
+#tags button {
+    background: transparent;
+    color: @foam;
+    padding: 0 8px;
+    margin: 0 4px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+#tags button.focused {
+    background: @pine;
+    color: @text;
+}
+
+#tags button.occupied {
+    color: @iris;
+}
+
+#tags button.urgent {
+    color: @love;
+}
+
+#tags button:hover {
+    background: @iris;
+    color: @base;
+}
+
+#window {
+    padding: 0 12px;
+    color: @text;
+}
+
+#clock {
+    background: @overlay;
+    padding: 0 12px;
+    border-radius: 8px;
+    color: @foam;
+}
+
+#pulseaudio, #network, #battery {
+    padding: 0 10px;
+    color: @text;
+}
+
+#pulseaudio.muted {
+    color: @love;
+}
+
+#battery.critical:not(.charging) {
+    color: @love;
+    animation: blink 1s infinite;
+}
+
+#network.disconnected {
+    color: @gold;
+}
+
+#tray {
+    padding: 0 10px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .active {
+    color: @pine;
+}
+
+/* Animation for critical battery */
+@keyframes blink {
+    50% { opacity: 0.6; }
+}

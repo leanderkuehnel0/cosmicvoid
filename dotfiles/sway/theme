@@ -2,7 +2,7 @@ shadows enable
 corner_radius 10
 gaps inner 8
 blur enable
-for_window [all] opacity 0.5
+for_window [all] opacity 0.7
 
-client.focused #6272A4 #6272A4 #F8F8F2
-client.unfocused #282A36 #282A36 #F8F8F2
+client.focused $color2 $color2 $color0 $color7 $color2
+client.unfocused $color0 $color0 $foreground $color7 $color0

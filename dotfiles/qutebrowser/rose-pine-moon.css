@@ -1,0 +1,93 @@
+/* Rosé Pine Moon Theme for Google Search */
+
+:root {
+    --base: #232136;
+    --surface: #2a273f;
+    --overlay: #393552;
+    --muted: #6e6a86;
+    --subtle: #908caa;
+    --text: #e0def4;
+    --love: #eb6f92;
+    --gold: #f6c177;
+    --rose: #ea9a97;
+    --pine: #3e8fb0;
+    --foam: #9ccfd8;
+    --iris: #c4a7e7;
+    --highlight-low: #2a283e;
+    --highlight-med: #44415a;
+    --highlight-high: #56526e;
+}
+
+/* General background and text */
+body, html {
+    background-color: var(--base) !important;
+    color: var(--text) !important;
+}
+
+/* Links */
+a {
+    color: var(--foam) !important;
+}
+a:visited {
+    color: var(--iris) !important;
+}
+a:hover {
+    color: var(--rose) !important;
+}
+
+/* Search input */
+input[type="text"], input[type="search"] {
+    background-color: var(--overlay) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--highlight-med) !important;
+}
+
+/* Buttons */
+input[type="submit"], input[type="button"], button {
+    background-color: var(--overlay) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--highlight-med) !important;
+}
+
+/* Search results */
+#search .g {
+    background-color: var(--surface) !important;
+    border: 1px solid var(--highlight-low) !important;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+/* Search result titles */
+#search .g h3 {
+    color: var(--rose) !important;
+}
+
+/* URL display */
+#search .g cite {
+    color: var(--gold) !important;
+}
+
+/* Snippet text */
+#search .g .IsZvec {
+    color: var(--subtle) !important;
+}
+
+/* Footer */
+#foot {
+    background-color: var(--overlay) !important;
+    color: var(--muted) !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--surface);
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--highlight-med);
+    border-radius: 4px;
+}
+

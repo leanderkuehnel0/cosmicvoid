@@ -1,0 +1,99 @@
+@import url("../../../../.cache/wal/colors-waybar.css");
+
+* {
+    border: none;
+    border-radius: 12px;
+    font-family: "0xProto Nerd Font", monospace;
+    font-size: 11px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: @background; /* Pywal background with 90% opacity */
+    color: @color15; /* Pywal foreground */
+    border: none;
+}
+
+/* Module containers - using pywal color4 */
+#window,
+#clock,
+#backlight,
+#pulseaudio,
+#bluetooth,
+#network,
+#cpu,
+#battery {
+    background-color: @color2; /* Pywal accent color */
+    color: @color0; 
+    padding: 0 8px;
+    margin: 0 2px;
+    border-radius: 12px;
+}
+
+/* Workspaces */
+#workspaces {
+    padding: 0 4px;
+    background-color: transparent;
+}
+
+#workspaces button {
+    padding: 0 6px;
+    background: transparent;
+    color: @color2; /* Pywal accent color */
+    border-radius: 12px;
+    min-width: 20px;
+    margin: 0 1px;
+}
+
+#workspaces button.focused {
+    background-color: @color2; 
+    color: @color0;
+}
+
+#workspaces button.urgent {
+    background-color: @color1; /* Pywal red/alert color */
+    color: @color15;
+}
+
+/* Hover effects - using lighter pywal color12 */
+#clock:hover,
+#pulseaudio:hover,
+#bluetooth:hover,
+#network:hover,
+#cpu:hover,
+#battery:hover {
+    background-color: @color12;
+}
+
+/* Critical states */
+#battery.critical:not(.charging) {
+    background-color: @color1;
+    animation: blink 1s ease-in-out infinite alternate;
+}
+
+@keyframes blink {
+    to {
+        opacity: 0.6;
+    }
+}
+
+/* Status indicators */
+#pulseaudio.muted {
+    background-color: @color8; /* Pywal bright black */
+    color: @color1;
+}
+
+#network.disconnected {
+    background-color: @color8;
+    color: @color1;
+}
+
+/* Compact layout */
+#clock {
+    padding: 0 10px;
+}
+
+#network, #bluetooth {
+    padding: 0 8px;
+    min-width: 20px;
+}
