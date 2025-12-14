@@ -3,5 +3,6 @@ if status is-interactive
 	# Commands to run in interactive sessions can go here
 end
 set editor nvim
-export PATH=$PATH:$HOME/.cargo/bin/
+alias "poweroff" "sudo poweroff"
+alias "cat" "bat"
 fish_config theme choose "Dracula Official"

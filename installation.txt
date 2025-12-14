@@ -1,6 +1,6 @@
 1. install void linux
 
-2. install swayfx with package manager:	sudo xbps-install swayfx wofi foot firefox Waybar pipewire wireplumber pavucontrol bluez bluetuith libspa-bluetooth 
+2. install swayfx with package manager:	sudo xbps-install swayfx wofi foot bat firefox Waybar pipewire wireplumber pavucontrol bluez bluetuith libspa-bluetooth 
 3. setup xdg:				sudo xbps-install xdg-utils 
 					sudo xbps-install xdg-user-dirs
 					sudo xbps-install elogind
