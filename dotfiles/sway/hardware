@@ -1,2 +1,3 @@
 set $touchpad "6127:24774:HAILUCK_CO.,LTD_Lenovo_HID_Device_Touchpad"
-set $kb_layout de
+set $kb_layout us
+output VGA-1 mode --custom 1680x1050@60.004Hz pos 0,0
