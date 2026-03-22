@@ -21,10 +21,12 @@ set $filemanager thunar
 input * xkb_layout $kb_layout
 
 # Default wallpaper
-exec wal -R && sleep 2 && wal -R -e
+exec wal -R
 exec_always wal -R -e
 
 exec pipewire
+exec pipewire-pulse
+exec wireplumber
 exec_always sleep 1 && dbus-launch $HOME/.config/waybar/launch.sh sway
 exec_always pywalfox update
 exec wl-paste --watch cliphist store
