@@ -13,14 +13,14 @@ bindsym $mod+q kill
 floating_modifier $mod normal
 
 # Reload the configuration file
-bindsym $mod+Shift+c exec $HOME/cosmic/scripts/update.sh
+bindsym $mod+Shift+c exec $HOME/cosmicvoid/scripts/update.sh
 
 # Take a Screenshot
 bindsym $mod+Shift+p exec grim -g "$(slurp)" $HOME/Pictures/screenshot.png
 bindsym $mod+v exec cliphist list | wofi -S dmenu --pre-display-cmd "echo '%s' | cut -f 2" | cliphist decode | wl-copy
 
 # Change the wallpaper
-bindsym $mod+Shift+w exec $HOME/cosmic/scripts/pywal/change-theme.sh
+bindsym $mod+Shift+w exec $HOME/cosmicvoid/scripts/pywal/change-theme.sh
 
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
