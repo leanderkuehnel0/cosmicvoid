@@ -1,0 +1,2 @@
+#/bin/dash
+wpctl set-volume $(pactl list clients short | awk '$3 == "spotify" {print $1}') 0.05$(echo $1 | sed -e 's/up/+/g;s/down/-/g')

@@ -1,0 +1,8 @@
+[v1]
+"bklt 0.1.0 (path+file:///home/janluca/.config/sway/code/bklt)" = ["bklt"]
+"get_percent_year 0.1.0 (path+file:///home/janluca/.config/eww/code/get_percent_year)" = ["get_percent_year"]
+"get_scratch_mode 0.1.0 (path+file:///home/janluca/.config/eww/code/get_scratch_mode)" = ["get_scratch_mode"]
+"get_sysinfo 0.1.0 (path+file:///home/janluca/.config/eww/code/get_sysinfo)" = ["get_sysinfo"]
+"get_vol 0.1.0 (path+file:///home/janluca/.config/eww/code/get_vol)" = ["get_vol"]
+"get_wm 0.1.0 (path+file:///home/janluca/.config/eww/code/get_wm)" = ["get_wm"]
+"get_workspaces 0.1.0 (path+file:///home/janluca/.config/eww/code/get_workspaces)" = ["get_workspaces"]

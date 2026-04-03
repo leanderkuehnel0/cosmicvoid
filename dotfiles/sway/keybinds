@@ -6,6 +6,7 @@ bindsym $mod+b exec $browser
 bindsym $mod+o exec obsidian
 bindsym $mod+e exec $filemanager
 bindsym $mod+Shift+Return exec $menu
+bindsym $mod+l exec swaylock
 
 # Kill focused window
 bindsym $mod+q kill
@@ -43,7 +44,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 #
 # Workspaces:
-#
+##
 # Switch to workspace
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2

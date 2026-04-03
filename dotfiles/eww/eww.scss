@@ -1,0 +1,194 @@
+* {
+  font-family: FontAwesome, Helvetica;
+  font-size: 15px;
+	background-color: transparent;
+	border-radius: 15px;
+	text-shadow: none;
+	outline: none;
+	border: none;
+	box-shadow: none;
+	color:white;
+}
+
+
+.tooltip_colored, .info_tab, .bar_widget, .systray, .rest, menu,
+.keybutton, .info_graph, .left, .middle, .right, .color { /* lighter background */
+	background: #073642;
+}
+/* general */
+.info_graph_box, .bar_big, .info_widget, .ws_widget { /* darker background */
+	background: #04232a;
+/*	background: linear-gradient(0deg, #6000Cf 0%, #8000ff 100%, );*/
+}
+
+.ws_widget {
+	border: solid #073642;
+	border-width: 3px 0;
+}
+
+.left, .middle, .right {
+	border-radius: 3px;
+	padding: 0 3px;
+}
+
+.ws_widget {
+	margin: 0 2px;
+	padding: 0 3px;
+}
+
+.left {
+	border-bottom-left-radius: 15px;
+	border-top-left-radius: 15px;
+	padding-left: 6px;
+}
+.right {
+	border-bottom-right-radius: 15px;
+	border-top-right-radius: 15px;
+	padding-right: 6px;
+}
+
+.whole {
+	padding: 0 6px;
+	background: #073642;
+}
+
+
+.bar_big, widget_box {
+	padding: 0;
+	margin: 0;
+}
+
+tooltip {
+	border-radius: 21px;
+	padding: 0;
+	margin: 0;
+}
+
+revealer {
+	border-radius: 21px;
+	padding: 0;
+	margin: 0;
+}
+
+
+button {
+	background: transparent;
+	padding: 0px;
+	margin: 0;
+	outline: none;
+	border: none;
+	transition-duration: 0;
+}
+
+button:hover, menuitem:hover, button:hover *, .scratch_focused {
+	background: #8000ff;
+	border-color: #8000ff;
+	outline: none;
+}
+
+
+.ws_open {
+	background: #073642;
+}
+
+.ws_focused {
+	border-bottom: 3px solid #8000ff;
+	border-top: 3px solid #8000ff;
+}
+.ws_urgent {
+	border-bottom: 3px solid red;
+	border-top: 3px solid red;
+}
+
+.urgent {
+	background: red;
+	color:black;
+}
+.warning {
+	background: #ffdd00;
+	color:black;
+}
+
+.combo-box-vol > box > button > box > cellview {
+	font-size: 0;
+	margin: 0;
+	padding: 0;
+}
+/* systray */
+.systray>widget>image {margin: 0 3px}
+.systray {padding: 0 3px}
+
+menu > separator {
+	padding: 6px 0;
+}
+menu {
+	padding: 6px 0;
+	margin: 0;
+}
+
+
+/* dropdown monitor tool */
+.info_graph_box {
+	padding: 0;
+	margin: 0 0 6px 0;
+	border: 2px solid #04232a;
+	border-radius: 0;
+}
+.info_textbox {
+	margin: 0;
+	padding: 0;
+}
+.info_title {
+	font-family: Anurati;
+	font-size: 30px;
+}
+.info_graph {
+	background: rgba(7, 54, 66, 0.8);
+}
+.info_graph_cpux {
+	background: transparent;
+}
+.info_graph_cpu0x {
+	color: transparent;
+	background: rgba(7, 54, 66, 0.6);
+}
+
+/* dropdown clock */
+.weekday {
+	color: #8000ff;
+}
+.time {
+	font-size: 20px;
+	font-weight: bold;
+}
+.clock {
+	font-weight: bold;
+}
+.weekday {
+	font-family: Anurati;
+	font-size: 120px;
+	margin: 0px 0px -24px 0px;
+}
+
+/* hud */
+.hud_bigbox {
+	background: rgba(0,0,0,0.5);
+}
+
+.hud_box {
+	padding: 10;
+/*	background: red;
+	background: red center center;
+	background-repeat: no-repeat;*/
+}
+
+/* hud */
+.powermenu {
+	background: rgba(0,0,0,0.4);
+}
+.powermenu_button_box {
+	background: rgba(0,0,0,0.8);
+}
+.powermenu_button_text {
+	font-size: 24;
+}

@@ -1,0 +1,129 @@
+(defpoll time :interval "1s"
+	:initial '{"hour":"0","min":"0","sec":"0","weekday":" ","day":"0","month":" "}'
+  `date +'{"hour":"%I","min":"%M","sec":"%S","weekday":"%^A","day":"%d","month":"%B","year":"%Y"}'`)
+(deflisten internals 
+	:initial '{"cpu":{"threads":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"total":0.0,"temp":0.0,"power_draw":0.0},"gpu":{"util":0.0,"vram":{"used":0.0,"total":0.5},"gtt":{"used":0.0,"total":7.4081154},"avail":true,"hwmon":{"power_draw":0.0,"edge":0.0,"junction":0.0}},"mem":{"used":0.0,"total":14.816231},"swap":{"used":0.0,"total":15.999996},"wlan":{"name":null,"ip":null,"rssi":0,"con":false,"rfkill":true},"bt":{"dev":"","con":false,"rfkill":false}}'
+	"~/.config/eww/bin/get_sysinfo")
+(deflisten vol
+	:initial '{"vol":"0.0","muted":"false","list_names":[]}' 
+	"~/.config/eww/bin/get_vol")
+(deflisten ws
+	:initial '{"scratch":{"len":0,"focused":false,"floating":false},"ws":[{"output":"eDP-1","focused":true,"urgent":false},null,null,null,null,{"output":"eDP-1","focused":false,"urgent":false},{"output":"eDP-1","focused":false,"urgent":false},{"output":"eDP-1","focused":false,"urgent":false},null]}'
+	"~/.config/eww/bin/get_wm")
+(deflisten mode
+	:initial '{"change": "default"}'
+	`swaymsg -mt subscribe '["mode"]'`)
+(defpoll percent_year :interval "30min"
+	:initial "0.0"
+	`~/.config/eww/bin/get_percent_year`)
+(defvar reveal_clock false)
+(defvar reveal_vol false)
+(deflisten dbus_count `~/.config/eww/bin/get-dbus.sh`)
+
+(defwidget button_label [?class ?onclick ?onrightclick text ?style ?width ?height]
+	(button :class "${class}" :onclick onclick :onrightclick onrightclick :timeout "100000s" :style "${style}" :width "${width?:0}" :height "${height?:0}"
+		(label :text text )
+	)
+)
+
+(defwidget info_graphx [value]
+	(box :class "info_graph_box"
+		(graph :class "info_graph" :value "${value}" :time-range "60s" :thickness 2 :height "100")
+	)
+)
+(defwidget info_graph_cpux [num]
+	(graph :class "info_graph info_graph_cpux" :value "${internals.cpu.threads[num] * 100}" :time-range "60s" :thickness 1 :height 100)
+)
+(defwidget info_graph_cpu0x [num]
+	(graph :class "info_graph info_graph_cpu0x" :value "${internals.cpu.threads[num] * 100}" :time-range "60s" :thickness 1 :height 100)
+)
+(defwidget info_graph_ramx [value]
+	(graph :class "info_graph" :value "${value}" :time-range "60s" :thickness 2 :height 100)
+)
+
+(defwidget info_textboxx [title value]
+	(box :class "info_textbox"
+		(label :text "${title}:" :halign "start")
+		(label :text "${value}" :halign "end")
+	)
+)
+
+(defwidget cpu_history []
+	(box :space-evenly false :style "padding: 0; margin: 0;" :class "info_widget"
+		(box :orientation "vertical" :space-evenly false :class "info_tab" :width "240" :style "margin-right: 6px;"
+			(label :class "info_title" :text "CPU")
+			(box :class "info_graph_box"
+				(overlay :class "info_graph_box"
+					(info_graph_cpu0x :num 0)
+					(info_graph_cpu0x :num 1)
+					(info_graph_cpu0x :num 2)
+					(info_graph_cpu0x :num 3)
+					(info_graph_cpu0x :num 4)
+					(info_graph_cpu0x :num 5)
+					(info_graph_cpu0x :num 6)
+					(info_graph_cpu0x :num 7)
+					(info_graph_cpu0x :num 8)
+					(info_graph_cpu0x :num 9)
+					(info_graph_cpu0x :num 10)
+					(info_graph_cpu0x :num 11)
+					(info_graph_cpu0x :num 12)
+					(info_graph_cpu0x :num 13)
+					(info_graph_cpu0x :num 14)
+					(info_graph_cpu0x :num 15)
+					(info_graph_cpu0x :num 16)
+					(info_graph_cpu0x :num 17)
+					(info_graph_cpu0x :num 18)
+					(info_graph_cpu0x :num 19)
+					(info_graph_cpu0x :num 20)
+					(info_graph_cpu0x :num 21)
+					(info_graph_cpu0x :num 22)
+					(info_graph_cpu0x :num 23)
+
+					(info_graph_cpux :num 0)
+					(info_graph_cpux :num 1)
+					(info_graph_cpux :num 2)
+					(info_graph_cpux :num 3)
+					(info_graph_cpux :num 4)
+					(info_graph_cpux :num 5)
+					(info_graph_cpux :num 6)
+					(info_graph_cpux :num 7)
+					(info_graph_cpux :num 8)
+					(info_graph_cpux :num 9)
+					(info_graph_cpux :num 10)
+					(info_graph_cpux :num 11)
+					(info_graph_cpux :num 12)
+					(info_graph_cpux :num 13)
+					(info_graph_cpux :num 14)
+					(info_graph_cpux :num 15)
+					(info_graph_cpux :num 16)
+					(info_graph_cpux :num 17)
+					(info_graph_cpux :num 18)
+					(info_graph_cpux :num 19)
+					(info_graph_cpux :num 20)
+					(info_graph_cpux :num 21)
+					(info_graph_cpux :num 22)
+					(info_graph_cpux :num 23)
+				)
+			)
+			(info_textboxx :title "Load" :value "${round(internals.cpu.total * 100, 2)}%")
+			(info_textboxx :title "Power draw" :value "${round(internals.cpu.power_draw, 2)}W")
+			(info_textboxx :title "Temp" :value "${round(internals.cpu.temp, 2)}°C")
+		)
+		(box :orientation "vertical" :space-evenly false :class "info_tab" :width "240" :style "margin-right: 6px;"
+			(label :class "info_title" :text "RAM")
+			(info_graphx :value "${internals.mem.used / internals.mem.total * 100}")
+			(info_textboxx :title "Used" :value "${round(internals.mem.used, 2)}G")
+			(info_textboxx :title "Other" :value "${round(internals.mem.other, 2)}G")
+			(info_textboxx :title "Total" :value "${round(internals.mem.total, 2)}G")
+		)
+		(box :orientation "vertical" :space-evenly false :class "info_tab" :width "240"
+			(label :class "info_title" :text "GPU")
+			(info_graphx :value "${internals.gpu.util*100}")
+			(info_textboxx :title "Load" :value "${round(internals.gpu.util*100, 2)}%")
+			(info_textboxx :title "Power draw" :value "${round(internals.gpu.hwmon.power_draw, 2)}W")
+			(info_textboxx :title "Temp" :value "${round(internals.gpu.hwmon.edge, 0)}°C")
+			(info_textboxx :title "RAM" :value "${round(internals.gpu.vram.used, 2)}G / ${round(internals.gpu.vram.total, 1)}G")
+			(info_textboxx :title "GTT" :value "${round(internals.gpu.gtt.used, 2)}G / ${round(internals.gpu.gtt.total, 1)}G")
+		)
+	)
+)

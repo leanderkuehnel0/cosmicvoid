@@ -1,0 +1,27 @@
+(defwidget powermenu_button [text icon shortcut ?style]
+	(box :orientation "v" :space-evenly false :class "powermenu_button_box"
+		(image :class "powermenu_button_image" :path "/usr/share/icons/Adwaita/symbolic/actions/${icon}.svg" :image-width 200)
+		(label :class "powermenu_button_text" :text text)
+		(label :class "powermenu_button_shortcut" :text shortcut)
+	)
+)
+
+(defwidget powermenu []
+	(box :spacing 6
+		(powermenu_button :shortcut "q,1" :text "Power Off" :icon "system-shutdown-symbolic")
+		(powermenu_button :shortcut "r,2" :text "Reboot" :icon "system-reboot-symbolic")
+		(powermenu_button :shortcut "w,3" :text "Reboot (windows)" :icon "system-reboot-symbolic")
+		(powermenu_button :shortcut "4" :text "Reboot (soft)" :icon "system-reboot-symbolic")
+		(powermenu_button :shortcut "s,5" :text "Suspend" :icon "system-reboot-symbolic")
+		(powermenu_button :shortcut "e,6" :text "Log Out (egpu)" :icon "system-log-out-symbolic")
+	)
+)
+
+(defwindow powermenu
+  :monitor 0
+  :namespace "powermenu"
+  :geometry (geometry
+		:anchor "center")
+  (powermenu)
+)
+

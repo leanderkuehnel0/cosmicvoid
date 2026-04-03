@@ -1,0 +1,23 @@
+(defvar value 0)
+(defvar type "volume")
+(defvar mute false)
+(defvar icon "volume-full")
+
+(defwidget hud []
+	(box :class "hud_bigbox"
+		(box :orientation "v" :space-evenly false :class "hud_box" :style "background: url('/home/janluca/.config/eww/icons/${type == "volume" ? mute ? 'volume-mute' : value < 15 ? 'volume-low' : value < 40 ? 'volume-med' : value < 65 ? 'volume-high' : 'volume-full' : type == "mic" ? mute ? 'microphone-mute' : 'microphone' : type == "bklt" ? 'display' : '' }.svg') center center no-repeat; background-size: 50%"
+			(circular-progress :value "${value}" :start-at 75 :clockwise true :thickness 5 :vexpand true :style "background: #000000")
+		)
+	)
+)
+
+(defwindow hud
+  :monitor 0
+  :namespace "hud"
+  :geometry (geometry
+  	:width "150px"
+  	:height "150px"
+  	:y "100"
+		:anchor "bottom center")
+  (hud)
+)

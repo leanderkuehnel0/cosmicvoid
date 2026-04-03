@@ -1,0 +1,345 @@
+(include "./bar/info.yuck")
+
+(defwidget workspace [num ?class ?style]
+	(button_label 
+		:onclick "swaymsg workspace ${num}" 
+		:text "${num}"
+		:style style
+		:class 
+			"${ ( ( ws.ws[num] ?: true ) != true ) ?
+				ws.ws[num].focused ? "ws_open ws_widget ws_focused" :
+					ws.ws[num].urgent ? "ws_open ws_widget ws_urgent" : "ws_open ws_widget"
+					: "ws_widget"} ${class ?: "middle"}"
+	)
+)
+(defwidget workspace_reveal [num]
+	(revealer :reveal "${ (ws.ws[num] ?: true ) != true }" :transition "slideright" :duration "150ms"
+		(workspace :num "${num}")
+	)
+)
+
+(defwidget bar []
+	(centerbox
+		(box 
+			:class "bar_big"
+			:halign "start"
+			:spacing 6 
+			:hexpand true
+			:space-evenly false
+			:style "border-top-left-radius: 0;"
+			
+			(box 
+				:space-evenly false
+				:class "widget_box"
+
+				(workspace :num 0 :class "left" :style "border-top-left-radius: 0;")
+				(workspace :num 1)
+				(workspace :num 2)
+				(workspace :num 3)
+				(workspace :num 4)
+				(workspace :num 5 :class "right")
+				(revealer
+					:reveal "${ ( ws.ws[6] ?: ws.ws[7] ?: ws.ws[8] ?: false ) != false }"
+					:duration "200ms"
+					:transition "slideright"
+
+					(box
+						(workspace :num 6 :class "left")
+						(workspace :num 7)
+						(workspace :num 8 :class "right" )
+					)
+				)
+				(revealer
+					:reveal "${ws.scratch.len != 0}"
+					:transition "slideright"
+					:duration "200ms"
+
+					(button_label 
+						:onclick "swaymsg scratchpad show" 
+						:style "margin-left: 6px;"
+						:class "${ws.scratch.urgent ? "ws_urgent" : ""} ${ws.scratch.focused ? "scratch_focused" : ""} whole "
+						:text "${ws.scratch.len} "
+					)
+				)
+				(revealer 
+					:reveal "${ mode.change != "default" }" 
+					:transition "slideright" 
+					:duration "200ms"
+					
+					(button_label 
+						:onclick "swaymsg scratchpad show" 
+						:style "margin-left: 6px;"
+						:class "whole mode"
+						:text "${mode.change} "
+					)
+				)
+			)
+			;)
+		)
+		(box 
+			:class "bar_big" 
+			:halign "center"
+			:spacing 6 
+			:hexpand true 
+			:space-evenly false
+			
+			(eventbox 
+				:onhover "${EWW_CMD} update reveal_clock=true"
+				:onhoverlost "${EWW_CMD} update reveal_clock=false"
+				
+				(box 
+					:space-evenly false 
+					
+					(revealer 
+						:reveal "${reveal_clock}" 
+						:transition "slideright" 
+						:style "padding: 0" 
+						:duration "300ms"
+						
+						(label 
+							:text "${time.month} ${time.day}" 
+							:style "margin-right: 6px"
+							:class "left"
+						)
+					)
+
+					(label 
+						:text "${time.hour}:${time.min}" 
+						:style "${reveal_clock ? "border-bottom-right-radius: 0; border-top-right-radius: 0; padding-right: 0; margin: 0;" : ""}"
+						:class "${reveal_clock ? "middle" : "whole"}"
+					)
+
+					(revealer 
+						:reveal "${reveal_clock}" 
+						:transition "slideleft" 
+						:duration "300ms"
+
+						(box
+							:space-evenly false
+							(label 
+								:style "border-bottom-left-radius: 0; border-top-left-radius: 0; padding: 0 3px 0 0; margin: 0;"
+								:class "middle"
+								:text ":${time.sec}"
+							)
+							(label 
+								:text "${time.year} is ${round(percent_year* 100, 2)}% over"
+								:style "margin-left: 6px" 
+								:class "right"
+							)
+						)
+					)
+				)
+			)
+		)
+		(box 
+			:class "bar_big bar_right" 
+			:halign "end" 
+			:space-evenly false 
+			:hexpand true
+			:style "border-top-right-radius: 0;"
+
+			(box
+				:space-evenly false
+				:style "margin-right: 6px;"
+				
+				(revealer 
+					:reveal "${internals.bt.rfkill}" 
+					:transition "slideleft" :duration "200ms"
+					(tooltip 
+						(box
+							:width 240 
+							:orientation "vertical" 
+							:space-evenly false 
+							:class "info_tab"
+							
+							(label 
+								:class "info_title"
+								:text "BT"
+							)
+							(info_textboxx
+								:title "Devices"
+								:value "${internals.bt.dev ?: "None"}"
+							)
+						)
+						(button_label 
+							:onclick "blueberry" 
+							:text "${internals.bt.dev ?: "None"} "
+							:class "${ internals.wlan.rfkill || internals.ether.up ? "left" : "whole"}"
+							:style "margin-right: 4px"
+						)
+					)
+				)
+				(revealer 
+					:reveal "${internals.wlan.rfkill}" 
+					:transition "slideleft" 
+					:duration "200ms"
+					
+					(tooltip 
+						(box
+							:width 240 
+							:orientation "vertical" 
+							:space-evenly false 
+							:class "info_tab"
+							
+							(label 
+								:class "info_title"
+								:text "WIFI"
+							)
+							(info_textboxx
+								:title "SSID"
+								:value "${internals.wlan.con ? internals.wlan.name : "None"}"
+							)
+							(revealer
+								:reveal "${internals.wlan.con}"
+								(info_textboxx :title "RSSI" :value "${ internals.wlan.rssi - 100}")
+							)
+							(info_textboxx
+								:title "Internet"
+								:value "${internals.wlan.internet}"
+							)
+							(revealer
+								:reveal "${internals.wlan.con}"
+								(info_textboxx :title "IP" :value "${internals.wlan.ip}")
+							)
+						)
+						(button_label 
+							:onclick "iwgtk" 
+							:text "${internals.wlan.con ? "${internals.wlan.name} ${internals.wlan.rssi}" : "None"} "
+							:class "${internals.ether.up ? internals.bt.rfkill ? "middle" : "left" : "right" }"
+							:style "margin-right: 4px;"
+						)
+					)
+				)
+				(revealer 
+					:reveal "${internals.ether.up}" 
+					:transition "slideleft" 
+					:duration "200ms"
+					
+					(tooltip 
+						(box
+							:width 240 
+							:orientation "vertical" 
+							:space-evenly false 
+							:class "info_tab"
+							
+							(label 
+								:class "info_title"
+								:text "ETHER"
+							)
+							(info_textboxx
+								:title "Internet"
+								:value "${internals.ether.internet}"
+							)
+							(info_textboxx
+								:title "IP"
+								:value "${internals.ether.ip}"
+							)
+						)
+						(button_label 
+							:onclick "nm-connection-editor" 
+							:text "Ethernet "
+							:class "${internals.wlan.rfkill || internals.bt.rfkill ? "right" : "whole"}"
+						)
+					)
+				)
+			)
+			(button
+				:onclick "missioncenter"
+				:timeout "100000s"
+				:style "margin-right: 6px"
+				
+				(tooltip
+					(cpu_history)
+					(box 
+						:space-evenly false
+						(box 
+							:space-evenly false 
+							:spacing 4
+							:style "padding-right: 6px;"
+							:class "widget-box"
+							
+							(label
+								:class "left" 
+								:text "${round(internals.cpu.total * 100, 0)}% "
+							)
+							(label 
+								:text "${round(internals.cpu.temp, 0)}°C "
+								:class "${ internals.cpu.temp >= 85 ? "urgent" : "" } right"
+							)
+						)
+						(box 
+							:space-evenly false 
+							:spacing 4
+							:style "padding-right: 6px;"
+							:class "widget-box"
+							(label 
+								:class "left" 
+								:text "${round(internals.gpu.util * 100, 0)}% 󰢮"
+							)
+							(label 
+								:text "${round(internals.gpu.hwmon.edge, 0)}°C "
+								:class "${ internals.gpu.hwmon.edge >= 85 ? "urgent" : "" } right"
+							)
+						)
+						(box 
+							:class "widget-box" 
+							:space-evenly false
+							
+							(label 
+								:text "${round(internals.mem.used, 2)}G/${round(internals.mem.total, 1)}G "
+								:class "${internals.swap.used > 0.5 ? "left" : "whole"}"
+							)
+						)
+					)
+				)
+			)
+			(box 
+				:space-evenly false
+				
+				(box 
+					:space-evenly false 
+					:class "widget-box"
+					
+					(box 
+						:space-evenly false
+						:class "whole"
+						:style "padding: 0; margin: 0 4px 0 0;"
+
+						(eventbox
+							:onscroll "~/.config/eww/bin/set_spotify_percentage {}"
+							(button_label
+								:style "margin: 0; padding: 0; border-bottom-right-radius: 0px; border-top-right-radius: 0px; padding-left: 6px;"
+								:text "${round(vol.vol * 100, 0)}% ${vol.muted ? "" :  ""}" 
+								:onclick "pavucontrol"
+							)
+						)
+						(combo-box-text 
+							:items "${vol.list_names}" 
+							:onchange "wpctl set-default $(echo {} | sed 's/.*(//; s/).*//')" 
+							:class "combo-box-vol" 
+							:style "padding: 0; margin: 2px;border-bottom-right-radius: 3px; border-top-right-radius: 3px;"
+						)
+					)
+				)
+					(systray
+						:class "whole"
+						:style "border-top-right-radius: 0;"
+						:icon-size 16
+						:spacing 6
+					)
+			)
+		)
+	)
+)
+
+
+(defwindow bar
+  :monitor 0
+  :exclusive true
+  :namespace "bar"
+  :geometry (geometry
+  	:width "100%"
+  	:height "30px"
+		:anchor "top center")
+  (bar)
+)

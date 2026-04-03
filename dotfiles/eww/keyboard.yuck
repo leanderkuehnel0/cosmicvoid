@@ -1,0 +1,136 @@
+
+(defwidget time_widget []
+	(time_widget_text :class ""))
+
+(defwidget keybutton [?width ?height ?code ?mod text]
+	(button_label :class "keybutton" :width "${width ?: 100}" :height "${height ?: 100}" :text "${text}" :onclick "ydotool key ${code}:1; sleep 0.02; ydotool key ${code}:0")
+)
+(defwidget keymod [?width ?height ?code ?mod reveal text]
+	(button_label :class "keybutton" :width "${width ?: 100}" :height "${height ?: 100}" :text "${text}" :onclick "ydotool key ${code}:1; sleep 0.02; ydotool key ${code}:0")
+)
+(defvar super false)
+(defvar func false)
+(defvar ctrl false)
+(defvar shift false)
+(defvar capslk false)
+(defvar altgr false)
+
+(defwidget keyboard []
+	(box :space-evenly false :halign "center"
+		(box :orientation "v" :space-evenly false
+			(box :space-evenly false
+				(keybutton :text "tab" :code 15 :width 130)
+				(keybutton :text "q" :code 16 )
+				(keybutton :text "w" :code 17)
+				(keybutton :text "e" :code 18)
+				(keybutton :text "r" :code 19)
+				(keybutton :text "t" :code 20)
+				(keybutton :text "z" :code 21)
+				(keybutton :text "u" :code 22)
+				(keybutton :text "i" :code 23)
+				(keybutton :text "o" :code 24)
+				(keybutton :text "p" :code 25)
+				(keybutton :text "ü" :code 26)
+				(keybutton :text "Backspace" :code 14 :width 200)
+			)
+			(box :space-evenly false
+				(keybutton :text "CapsLk" :code 58 :width 130)
+				(keybutton :text "a" :code 30)
+				(keybutton :text "s" :code 31)
+				(keybutton :text "d" :code 32)
+				(keybutton :text "f" :code 33)
+				(keybutton :text "g" :code 34)
+				(keybutton :text "h" :code 35)
+				(keybutton :text "j" :code 36)
+				(keybutton :text "k" :code 37)
+				(keybutton :text "l" :code 38)
+				(keybutton :text "ö" :code 39)
+				(keybutton :text "ä" :code 40)
+				(keybutton :text "Enter" :code 28 :width 200)
+			)
+			(box :space-evenly false
+				(keybutton :text "Shift" :width 230)
+				(keybutton :text "y" :code 44)
+				(keybutton :text "x" :code 45)
+				(keybutton :text "c" :code 46)
+				(keybutton :text "v" :code 47)
+				(keybutton :text "b" :code 48)
+				(keybutton :text "n" :code 49)
+				(keybutton :text "m" :code 50)
+				(keybutton :text "," :code 51)
+				(keybutton :text "." :code 52)
+				(keybutton :text "Shift" :width 300)
+			)
+			(box :space-evenly false
+				(keybutton :text "Ctrl" :code 29 :width 100)
+				(keybutton :text "Fn")
+				(keybutton :text "Win" :width 130)
+				(keybutton :text "Alt")
+				(keybutton :text "Space" :code 57 :width 500)
+				(keybutton :text "AltGr")
+				(keybutton :text "Ctrl")
+				(keybutton :text "left" :code 75)
+				(box :orientation "v"
+					(keybutton :text "up" :code 72 :height 50)
+					(keybutton :text "down" :code 80 :height 50)
+				)
+				(keybutton :text "Right" :code 77)
+			)
+		)
+		; esc: 1
+		; apostrophe: 12
+		; d_circomflex: 13
+		; :code 27 d_diaeresis
+		; :code 29 ctrl_enter
+		; -30, -31, -53
+		; :code 41 section
+		; :code 43 dollar
+		; 58-68  f1-f10
+		; :code 69 numlock
+		; :code 71 home
+		; :code 73 prior
+		; :code 76 begin
+		; :code 79 end
+		; :code 81 next
+		; :code 82 insert
+		; :code 83 delete
+		; :code 84 return
+		(box :orientation "v" :space-evenly false
+			(box :space-evenly false
+				(keybutton :text "1" :code 2)
+				(keybutton :text "2" :code 3)
+				(keybutton :text "3" :code 4)
+				(keybutton :text "+" :code 78 :width 75)
+			)
+			(box :space-evenly false
+				(keybutton :text "4" :code 5)
+				(keybutton :text "5" :code 6)
+				(keybutton :text "6" :code 7)
+				(keybutton :text "-" :code 74 :width 75)
+
+			)
+			(box :space-evenly false
+				(keybutton :text "7" :code 8)
+				(keybutton :text "8" :code 9)
+				(keybutton :text "9" :code 10)
+				(keybutton :text "*" :code 55 :width 75)
+			)
+			(box :space-evenly false
+				(keybutton :text "0" :code 11)
+				(keybutton :text "Enter" :code 28 :width 200)
+				(keybutton :text "/" :width 75)
+			)
+		)
+	)
+)
+
+(defwindow keyboard
+  :monitor 0
+  :exclusive true
+  :namespace "bar"
+  :geometry (geometry
+  	:width "100%"
+  	:height 400
+		:anchor "bottom center")
+  (keyboard)
+)

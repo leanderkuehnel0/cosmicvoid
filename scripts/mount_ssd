@@ -1,0 +1,3 @@
+#!/bin/fish
+sudo cryptsetup open /dev/sda cryptroot
+sudo mount /dev/mapper/cryptroot /home/andi/sdcard
