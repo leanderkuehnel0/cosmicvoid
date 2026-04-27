@@ -46,6 +46,12 @@ bindsym $mod+Shift+Right move right
 # Workspaces:
 ##
 # Switch to workspace
+#
+bindsym --whole-window {
+    $mod+button4 workspace prev
+    $mod+button5 workspace next
+}
+
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
 bindsym $mod+3 workspace number 3
