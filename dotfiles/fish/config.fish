@@ -4,7 +4,7 @@ if status is-interactive
 end
 set editor nvim
 alias "poweroff" "sudo poweroff"
-alias "mount_ssd" "/home/andi/cosmic/scripts/mount_ssd"
+alias "mount_ssd" "/home/andi/cosmicvoid/scripts/mount_ssd"
 
 fish_config theme choose "Dracula Official"
 fish_add_path /home/andi/.local/bin
